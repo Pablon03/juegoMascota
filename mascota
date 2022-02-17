@@ -1,0 +1,49 @@
+public class mascota {
+
+	// Atributos de la mascota
+	private String nombre;
+	private String tipo;
+	private double puntos;
+	
+	// Constructor
+	public void mascota() {
+		this.nombre = " ";
+		this.tipo = " ";
+		this.puntos = 0;
+	}
+	
+	public static void darComida() {}
+	
+	public static void comprarComida() {}
+	
+	public static void jugar() {}
+
+	
+	//GETTERS Y SETTERS
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public double getPuntos() {
+		return puntos;
+	}
+
+	public void setPuntos(double puntos) {
+		this.puntos = puntos;
+	}
+	
+	
+}
