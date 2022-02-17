@@ -1,0 +1,150 @@
+import java.util.*;
+
+public class MonroyPet {
+
+	static Scanner sc = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int accion;
+
+		mascota m1 = new mascota();
+		mascota m2 = new mascota();
+
+		crearMascota(m1);
+		crearMascota(m2);
+
+		do {
+			mostrarMenu();
+			accion = accionMenu();
+			tratarMenu(accion, m1, m2);
+		} while (accion != 5);
+
+	}
+
+	private static void crearMascota(mascota mascotaCrear) {
+		boolean tipoCorrecto = false;
+		System.out.println("�Qu� nombre le quiere poner?");
+		String nombreMascota = sc.next();
+
+		do {
+			System.out.println("�Qu� tipo de mascota es?");
+			String tipoMascota = sc.next();
+			tipoCorrecto = comprobarTipoMascota(tipoMascota);
+		} while (tipoCorrecto != true);
+	}
+
+	private static boolean comprobarTipoMascota(String tipoMascota) {
+		boolean comprobacion = false;
+		tipoMascota.toUpperCase();
+		if (tipoMascota == "PERRO") {
+			System.out.println("Es un perro");
+			comprobacion = true;
+		} else if (tipoMascota == "GATO") {
+			System.out.println("Es un gato");
+			comprobacion = true;
+		} else {
+			System.out.println("Error, tipo mal introducido");
+		}
+		return comprobacion;
+	}
+
+	private static void mostrarMenu() {
+		System.out.println(":.MEN�.:");
+		System.out.println("1. Dar comida a la mascota");
+		System.out.println("2. Comprar comida");
+		System.out.println("3. Jugar con la mascota");
+		System.out.println("4. Informaci�n de las mascotas.");
+		System.out.println("5. Salir");
+	}
+
+	private static int accionMenu() {
+		int accion;
+		System.out.println("Elige lo que desea realizar");
+		accion = sc.nextInt();
+
+		return accion;
+	}
+
+	private static void tratarMenu(int accion, mascota m1, mascota m2) {
+		int mascotaElegida;
+		boolean mascotaCorrecta = false;
+
+		switch (accion) {
+		case 1:
+			do {
+				System.out.println("Elige la mascota a la que dar de comer: ");
+				mascotaElegida = sc.nextInt();
+				mascotaCorrecta = comprobarMascota(mascotaElegida);
+			} while (mascotaCorrecta != true);
+			if (mascotaElegida == 1) {
+				m1.darComida();
+			} else {
+				m2.darComida();
+			}
+			break;
+			
+		case 2:
+			do {
+				System.out.println("Elige la mascota a la que comprar comida: ");
+				mascotaElegida = sc.nextInt();
+				mascotaCorrecta = comprobarMascota(mascotaElegida);
+			} while (mascotaCorrecta != true);
+			if (mascotaElegida == 1) {
+				m1.comprarComida();
+			} else {
+				m2.comprarComida();
+			}
+			break;
+			
+		case 3:
+			
+			do {
+				System.out.println("Elige la mascota a la que comprar comida: ");
+				mascotaElegida = sc.nextInt();
+				mascotaCorrecta = comprobarMascota(mascotaElegida);
+			} while (mascotaCorrecta != true);
+			
+			boolean minutosCorrectos = false;
+			do {
+				System.out.println("�Cu�ntos minutos desea jugar con ella?");
+				double minutos = sc.nextDouble();
+				if (minutos > 0) {
+					System.out.println("Perfecto, jugaremos con ella");
+					minutosCorrectos = true;
+				} else {
+					System.out.println("No puede jugar cero o menos minutos");
+				}
+			} while (minutosCorrectos != true);
+			
+			if (mascotaElegida == 1) {
+				m1.jugar();
+			} else {
+				m1.jugar();
+			}
+			break;
+			
+		case 4:
+			System.out.println(m1.toString());
+			System.out.println(m2.toString());
+			break;
+			
+		case 5:
+			System.out.println("Saliendo y apagando el sistema...");
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	private static boolean comprobarMascota(int mascotaElegida) {
+		boolean comprobacion = false;
+		if (mascotaElegida == 1 || mascotaElegida == 2) {
+			System.out.println("Ha elegido bien la mascota");
+			comprobacion = true;
+		} else {
+			System.out.println("Error, solo puede introducir 1 o 2");
+		}
+		return comprobacion;
+	}
+}
